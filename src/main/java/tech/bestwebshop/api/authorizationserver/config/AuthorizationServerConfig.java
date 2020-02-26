@@ -52,17 +52,18 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret(passwordEncoder().encode("supersecretpassword"))
                 .authorizedGrantTypes("authorization_code")
                 .scopes("all.read", "all.write")
-                //.secret("{noop}secret")
                 .redirectUris("http://bestwebshop.tech/OAuthRedirectEndpoint");
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
+        //@formatter:off
         endpoints
                 .authenticationManager(this.authenticationManager)
                 .tokenStore(tokenStore())
                 .userApprovalHandler(userApprovalHandler())
                 .accessTokenConverter(accessTokenConverter());
+        //@formatter:on
     }
 
     @Bean
