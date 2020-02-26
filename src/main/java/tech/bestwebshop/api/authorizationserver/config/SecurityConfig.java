@@ -29,10 +29,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/oauth2/keys").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin(formLogin -> formLogin
+                /*.formLogin(formLogin -> formLogin
                         .loginPage("http://bestwebshop.tech:9201/auth/login")
                         .permitAll())
-                ;
+                ;*/
+                .formLogin();
     }
 
     @Bean
