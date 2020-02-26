@@ -13,13 +13,5 @@ public class AuthorizationServerApplication {
     public static void main(String[] args) {
         SpringApplication.run(AuthorizationServerApplication.class, args);
     }
-
-
-    @Bean
-    public RedirectStrategy createRedirectStrategy(){
-        DefaultRedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
-        redirectStrategy.setContextRelative(true);
-
-        return redirectStrategy;
-    }
+    
 }
