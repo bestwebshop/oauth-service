@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.jwt.JwtHelper;
 import org.springframework.security.jwt.crypto.sign.RsaSigner;
 import org.springframework.security.jwt.crypto.sign.RsaVerifier;
@@ -47,14 +49,15 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 .withClient("webshop-webclient")
+                .secret(passwordEncoder().encode("supersecretpassword"))
                 .authorizedGrantTypes("authorization_code")
                 .scopes("all.read", "all.write")
-                .secret("{noop}secret")
+                //.secret("{noop}secret")
                 .redirectUris("http://bestwebshop.tech/OAuthRedirectEndpoint");
     }
 
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
                 .authenticationManager(this.authenticationManager)
                 .tokenStore(tokenStore())
@@ -117,5 +120,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .algorithm(JWSAlgorithm.RS256)
                 .keyID(KeyConfig.VERIFIER_KEY_ID);
         return new JWKSet(builder.build());
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 }
