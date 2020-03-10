@@ -29,7 +29,7 @@ class KeyConfig {
     }
 
     @SuppressWarnings("deprecation")
-    private static KeyPair getKeyPair() {
+    protected static KeyPair getKeyPair() {
         return KEY_STORE_KEY_FACTORY.getKeyPair(KEY_ALIAS);
     }
 }

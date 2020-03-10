@@ -26,14 +26,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();*/
         httpSecurity
                 .authorizeRequests()
-                .antMatchers("/oauth2/keys").permitAll()
+                .antMatchers("/", "/login", "/oauth2/jwks.json", "/oauth2/introspect").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                /*.formLogin(formLogin -> formLogin
-                        .loginPage("http://bestwebshop.tech:9201/auth/login")
-                        .permitAll())
-                ;*/
-                .formLogin();
+                .formLogin()
+                //.defaultSuccessUrl("http://localhost/OAuthRedirectEndpoint", true)
+                .permitAll()
+                .and()
+                .logout().permitAll();
     }
 
     @Bean

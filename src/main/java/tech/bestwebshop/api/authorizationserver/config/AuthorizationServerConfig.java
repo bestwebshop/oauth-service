@@ -53,7 +53,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret(passwordEncoder().encode("supersecretpassword"))
                 .authorizedGrantTypes("authorization_code")
                 .scopes("all.read", "all.write")
-                .redirectUris("http://bestwebshop.tech/OAuthRedirectEndpoint");
+                .redirectUris("http://localhost/OAuthRedirectEndpoint");
     }
 
     @Override
