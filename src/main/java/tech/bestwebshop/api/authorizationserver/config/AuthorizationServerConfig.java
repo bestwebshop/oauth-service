@@ -51,7 +51,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         clients.inMemory()
                 .withClient("webshop-webclient")
                 .secret(passwordEncoder().encode("supersecretpassword"))
-                .authorizedGrantTypes("authorization_code")
+                .authorizedGrantTypes("authorization_code", "client_credentials")
                 .scopes("all.read", "all.write")
                 .redirectUris("http://localhost/OAuthRedirectEndpoint");
     }
