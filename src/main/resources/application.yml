@@ -1,14 +1,15 @@
 server:
   port: 9208
-
+  #port: 8080
 spring:
   application:
-    name: authorization-service
+    name: oauth-service
 
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:9200/eureka/
+      #defaultZone: http://discovery-service:8080/eureka/
   instance:
     preferIpAddress: true
     leaseRenewalIntervalInSeconds: 5
@@ -21,3 +22,11 @@ logging:
     org.springframework.web: INFO
     org.springframework.security: DEBUG
     org.springframework.security.oauth2: DEBUG
+
+#security:
+#  oauth2:
+#    client:
+#      grant-type: client_credentials
+#      client-id: oauth-client
+#      client-secret: oauthpassword
+#      access-token-uri: http://localhost:9208/oauth/token

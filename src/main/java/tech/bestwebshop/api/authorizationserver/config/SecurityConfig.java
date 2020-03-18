@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().permitAll();
     }
 
-    @Bean
+   /* @Bean
     @Override
     public UserDetailsService userDetailsService() {
         @SuppressWarnings("deprecation")
@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         manager.createUser(users.username("oauthuser").password("oauthpassword").roles("USER").build());
         manager.createUser(users.username("admin").password("password").roles("USER", "ADMIN").build());
         return manager;
-    }
+    }*/
 
     @Bean
     @Override
